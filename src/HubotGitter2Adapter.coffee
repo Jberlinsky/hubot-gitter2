@@ -163,9 +163,7 @@ class HubotGitter2Adapter extends Adapter
       message = data.model
       cl = @gitterClient()
       cl.asyncUser message.fromUser, (error, user) =>
-        if error
-          @_log 'error', "error loading a user: #{ error }"
-        else if user.isSessionUser()
+        if user.isSessionUser()
           @_log "not handling a message from the bot user"
         else if @_ignoreRoom(room)
           @_log "not handling a message because in room #{ room }"
